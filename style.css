@@ -1,0 +1,96 @@
+/* CSS controls how the page LOOKS. Comments in CSS look like this.
+   Each rule has a selector (what to style) and settings inside { }. */
+
+/* Colors are stored here once, so you can change the whole look in one place.
+   Try changing these hex codes! */
+:root {
+  --background: #fdf6ec;  /* page background */
+  --text: #2b2b2b;        /* normal text */
+  --accent: #2f6f6a;      /* headings and links */
+  --soft: #e6efe9;        /* light panels */
+}
+
+/* "body" styles the whole page */
+body {
+  background: var(--background);
+  background-image: radial-gradient(var(--soft) 4px, transparent 2px);
+  background-size: 24px 24px;
+  animation: drift 2s linear infinite;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif; /* font choice, with fallbacks */
+  font-size: 1.125rem;     /* slightly larger than default */
+  line-height: 1;        /* space between lines of text */
+  max-width: 62rem;        /* keeps lines a readable length */
+  margin: 0 auto;          /* centers the page horizontally */
+  padding: 1.5rem;         /* breathing room around the edges */
+}
+
+@keyframes drift {
+  to { background-position: 24px 24px; }  /* move by exactly one tile, so the loop is seamless */
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+h2 {
+  margin-top: 2.5rem;
+}
+
+/* The class="tagline" paragraph in the HTML. A dot means "class". */
+.tagline {
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-top: 0;
+}
+
+/* Images: never wider than the page, and rounded corners */
+img {
+  max-width: 100%;   /* shrinks big photos to fit, especially on phones */
+  height: auto;      /* keeps the proportions correct */
+  border-radius: 0.5rem;
+}
+
+/* Links */
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  background: var(--soft);  /* highlight when the mouse is over a link */
+}
+
+/* Each section gets a thin line above it */
+section {
+  border-top: 5px solid var(--accent);
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.gallery {
+  display: flex;          /* puts the images in a row */
+  gap: 1rem;              /* space between images */
+  overflow-x: auto;       /* adds a sideways scrollbar when they don't fit */
+  scroll-snap-type: x mandatory;  /* images snap into place as you scroll */
+  padding-bottom: 0.5rem; /* room for the scrollbar */
+}
+
+.gallery img {
+  height: 300px;          /* all images get the same height */
+  width: auto;            /* width follows the image's proportions */
+  max-width: none;        /* stops the earlier "img" rule from shrinking them */
+  flex-shrink: 0;         /* keeps images from being squished */
+  scroll-snap-align: start;
+}
